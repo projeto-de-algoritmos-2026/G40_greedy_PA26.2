@@ -1,0 +1,27 @@
+{
+  "clinic": {
+    "name": "Santa Luiza",
+    "max_rooms": 8,
+    "doctors": {
+      "1": "ana",
+      "2": "luiza",
+      "3": "isaque",
+      "4": "ludmilla",
+      "5": "amanda",
+      "6": "felipe",
+      "7": "gabriel",
+      "8": "gustavo"
+    }
+  },
+  "appointments": [
+    {
+      "id": 1,
+      "person_name": "Nicolas",
+      "start": "9:30",
+      "procedure": "curativo",
+      "duration_minutes": 30,
+      "room": null
+    }
+  ],
+  "next_appointment_id": 2
+}
