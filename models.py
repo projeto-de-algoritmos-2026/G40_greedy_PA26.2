@@ -1,10 +1,10 @@
 """Modelos e regras básicas do domínio da clínica."""
 
 from __future__ import annotations
-
 from typing import Any
+from datetime import datetime
 
-PROCEDURES: dict[str, int] = {
+PROCEDURES = {
     "consulta clínica geral": 30,
     "retorno": 15,
     "avaliação clínica": 45,
@@ -33,9 +33,10 @@ class Clinic:
 
 
 class Appointment:
-    def __init__(self, person_name: str, start: str, procedure: str, room: int | None = None, id: int | None = None) -> None:
+    def __init__(self, person_name, date, start, procedure, room=None, id=None):
         self.id = id
         self.person_name = person_name
+        self.date = date
         self.start = start
         self.procedure = procedure
         self.room = room
@@ -43,14 +44,29 @@ class Appointment:
         if self.procedure not in PROCEDURES:
             raise DomainError("procedimento inválido.")
 
+        self.start_minutes  
+
     @property
-    def duration_minutes(self) -> int:
+    def duration_minutes(self):
         return PROCEDURES[self.procedure]
 
-    def to_dict(self) -> dict[str, Any]:
+    @property
+    def start_minutes(self):
+        try:
+            moment = datetime.strptime(f"{self.date} {self.start}", "%Y-%m-%d %H:%M")
+        except ValueError:
+            raise DomainError("data ou horário inválido, use AAAA-MM-DD e HH:MM.")
+        return moment.toordinal() * 1440 + moment.hour * 60 + moment.minute
+
+    @property
+    def end_minutes(self):
+        return self.start_minutes + self.duration_minutes
+
+    def to_dict(self):
         return {
             "id": self.id,
             "person_name": self.person_name,
+            "date": self.date,
             "start": self.start,
             "procedure": self.procedure,
             "duration_minutes": self.duration_minutes,
@@ -58,5 +74,12 @@ class Appointment:
         }
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> "Appointment":
-        return cls(data["person_name"], data["start"], data["procedure"], data.get("room"), data.get("id"))
+    def from_dict(cls, data):
+        return cls(
+            data["person_name"],
+            data["date"],
+            data["start"],
+            data["procedure"],
+            data.get("room"),
+            data.get("id"),
+        )

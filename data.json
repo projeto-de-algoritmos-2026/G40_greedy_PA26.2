@@ -1,14 +1,59 @@
 {
-  "clinic": null,
+  "clinic": {
+    "name": "nao_santa_luiza",
+    "max_rooms": 3,
+    "doctors": {
+      "1": "isaque",
+      "2": "ana",
+      "3": "lud"
+    }
+  },
   "appointments": [
     {
       "id": 1,
-      "person_name": "Nicolas",
-      "start": "9:30",
-      "procedure": "curativo",
+      "person_name": "ze",
+      "date": "2026-10-10",
+      "start": "08:00",
+      "procedure": "consulta clínica geral",
       "duration_minutes": 30,
-      "room": null
+      "room": 1
+    },
+    {
+      "id": 2,
+      "person_name": "joao",
+      "date": "2026-10-10",
+      "start": "08:35",
+      "procedure": "consulta clínica geral",
+      "duration_minutes": 30,
+      "room": 2
+    },
+    {
+      "id": 3,
+      "person_name": "joana",
+      "date": "2026-10-10",
+      "start": "08:33",
+      "procedure": "consulta clínica geral",
+      "duration_minutes": 30,
+      "room": 1
+    },
+    {
+      "id": 4,
+      "person_name": "reels da silva",
+      "date": "2026-10-10",
+      "start": "08:00",
+      "procedure": "consulta clínica geral",
+      "duration_minutes": 30,
+      "room": 2
+    },
+    {
+      "id": 5,
+      "person_name": "tique toque",
+      "date": "2026-10-10",
+      "start": "08:00",
+      "procedure": "consulta clínica geral",
+      "duration_minutes": 30,
+      "room": 3
     }
   ],
-  "next_appointment_id": 2
+  "next_appointment_id": 6
 }

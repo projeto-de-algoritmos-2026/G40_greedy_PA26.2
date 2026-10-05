@@ -97,10 +97,12 @@ def main():
 
             elif option == "5":
                 person_name = input("Nome da pessoa: ")
+                date = input("Data (AAAA-MM-DD): ")
                 start = input("Horário (HH:MM): ")
                 procedure = read_procedure()
                 appointment = appointments.create(
                     person_name,
+                    date,
                     start,
                     procedure,
                 )
@@ -113,11 +115,12 @@ def main():
                 appointment_id = int(input("ID do agendamento: "))
                 appointment = appointments.get(appointment_id)
                 person = input(f"Nome [{appointment.person_name}]: ") or appointment.person_name
+                date = input(f"Data [{appointment.date}]: ") or appointment.date
                 start = input(f"Horário [{appointment.start}]: ") or appointment.start
                 print(f"Procedimento atual: {appointment.procedure}")
                 procedure = read_procedure(appointment.procedure)
                 room = input("Sala (vazio mantém a atual): ")
-                changes = {"person_name": person, "start": start, "procedure": procedure}
+                changes = {"person_name": person, "date": date, "start": start, "procedure": procedure}
                 if room:
                     changes["room"] = int(room)
                 show(appointments.update(appointment_id, **changes).to_dict())
